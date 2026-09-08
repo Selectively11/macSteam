@@ -1,9 +1,10 @@
 import AppKit
 
-final class DiagnosticsViewController: NSViewController {
+final class DiagnosticsViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
     private let stateLabel = NSTextField(labelWithString: "")
     private let summaryLabel = NSTextField(wrappingLabelWithString: "")
-    private let details = NSTextView()
+    private let table = NSTableView()
+    private var health = InstallationHealth(state: .missing, summary: "", checks: [])
 
     override func loadView() {
         let root = NSView(frame: NSRect(x: 0, y: 0, width: 620, height: 460))
@@ -12,15 +13,20 @@ final class DiagnosticsViewController: NSViewController {
         summaryLabel.font = Typography.body
         summaryLabel.textColor = .secondaryLabelColor
 
-        details.isEditable = false
-        details.isSelectable = true
-        details.font = .monospacedSystemFont(ofSize: NSFont.smallSystemFontSize, weight: .regular)
-        details.textContainerInset = NSSize(width: 10, height: 10)
-        details.setAccessibilityLabel("Health checks")
+        for (identifier, title, width) in [("status", "Status", 90.0), ("check", "Check", 150.0), ("detail", "Detail", 280.0)] {
+            let column = NSTableColumn(identifier: .init(identifier))
+            column.title = title
+            column.width = width
+            table.addTableColumn(column)
+        }
+        table.dataSource = self
+        table.delegate = self
+        table.usesAlternatingRowBackgroundColors = true
+        table.setAccessibilityLabel("Installation health checks")
         let scroll = NSScrollView()
         scroll.hasVerticalScroller = true
         scroll.borderType = .bezelBorder
-        scroll.documentView = details
+        scroll.documentView = table
 
         let refreshButton = makeButton(title: "Refresh", target: self, action: #selector(refresh))
         refreshButton.keyEquivalent = "r"
@@ -57,11 +63,10 @@ final class DiagnosticsViewController: NSViewController {
     }
 
     @objc private func refresh() {
-        let health = HealthDiagnostics.inspect()
+        health = HealthDiagnostics.inspect()
         stateLabel.stringValue = health.state.rawValue
         summaryLabel.stringValue = health.summary
-        details.string = health.checks.map { "[\($0.status.rawValue.uppercased())] \($0.name)\n\($0.detail)" }
-            .joined(separator: "\n\n")
+        table.reloadData()
     }
 
     @objc private func copyReport() {
@@ -80,5 +85,22 @@ final class DiagnosticsViewController: NSViewController {
             let alert = NSAlert(error: error)
             alert.runModal()
         }
+    }
+
+    func numberOfRows(in tableView: NSTableView) -> Int { health.checks.count }
+
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        guard let tableColumn else { return nil }
+        let check = health.checks[row]
+        let text: String
+        switch tableColumn.identifier.rawValue {
+        case "status": text = check.status.rawValue.capitalized
+        case "check": text = check.name
+        default: text = check.detail
+        }
+        let field = NSTextField(labelWithString: text)
+        field.lineBreakMode = .byTruncatingTail
+        field.setAccessibilityLabel("\(tableColumn.title): \(text)")
+        return field
     }
 }

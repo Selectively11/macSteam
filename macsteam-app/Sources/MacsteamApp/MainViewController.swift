@@ -10,6 +10,7 @@ final class MainViewController: NSSplitViewController {
     private var configVC: ConfigViewController!
     private var installVC: InstallViewController!
     private var repairVC: RepairViewController!
+    private var diagnosticsVC: DiagnosticsViewController!
 
     private let titleLabel: NSTextField = {
         let field = NSTextField(labelWithString: "")
@@ -22,6 +23,7 @@ final class MainViewController: NSSplitViewController {
     enum Item: Equatable {
         case install
         case repair
+        case diagnostics
         case importZip
         case config(ConfigViewController.Section)
     }
@@ -41,11 +43,13 @@ final class MainViewController: NSSplitViewController {
         configVC = ConfigViewController(store: store)
         installVC = InstallViewController()
         repairVC = RepairViewController()
+        diagnosticsVC = DiagnosticsViewController()
 
         detailContainerVC = NSViewController()
         detailContainerVC.view = NSView()
         detailContainerVC.addChild(installVC)
         detailContainerVC.addChild(repairVC)
+        detailContainerVC.addChild(diagnosticsVC)
         detailContainerVC.addChild(importVC)
         detailContainerVC.addChild(configVC)
 
@@ -86,6 +90,9 @@ final class MainViewController: NSSplitViewController {
         case .repair:
             child = repairVC
             title = "Repair Steam"
+        case .diagnostics:
+            child = diagnosticsVC
+            title = "Diagnostics"
         case .importZip:
             child = importVC
             title = "Import Apps"

@@ -19,6 +19,7 @@ rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS"
 mkdir -p "$APP/Contents/Resources"
 mkdir -p "$APP/Contents/Frameworks"
+mkdir -p "$APP/Contents/Resources/ThirdPartyLicenses"
 
 cp ".build/release/$BIN_NAME" "$APP/Contents/MacOS/$BIN_NAME"
 install_name_tool -add_rpath @executable_path/../Frameworks "$APP/Contents/MacOS/$BIN_NAME"
@@ -68,6 +69,7 @@ PLIST
 SPARKLE_FW=".build/artifacts/sparkle/Sparkle/Sparkle.xcframework/macos-arm64_x86_64/Sparkle.framework"
 if [ -d "$SPARKLE_FW" ]; then
     cp -R "$SPARKLE_FW" "$APP/Contents/Frameworks/Sparkle.framework"
+    cp ".build/checkouts/Sparkle/LICENSE" "$APP/Contents/Resources/ThirdPartyLicenses/Sparkle.LICENSE"
 else
     echo "warning: Sparkle.framework not found -- auto-update disabled at runtime" >&2
 fi
