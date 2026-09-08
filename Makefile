@@ -12,7 +12,9 @@ LDFLAGS  := -arch $(ARCH) -mmacosx-version-min=$(MIN_VER) \
 
 FRAMEWORKS := -framework CoreFoundation -framework CFNetwork
 
-DOBBY_DIR := build/vendor/dobby
+DOBBY_REV := 5dfc8546954ce3b3198132ab13fddb89ee92cdd7
+DOBBY_DIR := build
+DOBBY_STAMP := $(DOBBY_DIR)/.dobby-revision
 DOBBY_LIBS := $(DOBBY_DIR)/libdobby.a \
               $(DOBBY_DIR)/builtin-plugin/SymbolResolver/libdobby_symbol_resolver.a \
               $(DOBBY_DIR)/builtin-plugin/SymbolResolver/libmacho_ctx_kit.a \
@@ -65,9 +67,9 @@ DEPS     := $(OBJS:.o=.d)
 
 all: $(TARGET)
 
-$(ARM64_DYLIB): $(OBJS)
+$(ARM64_DYLIB): $(OBJS) $(DOBBY_STAMP)
 	@mkdir -p $(dir $@)
-	$(CC) $(LDFLAGS) -o $@ $^ $(DOBBY_LIBS) $(FRAMEWORKS) -lc++
+	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(DOBBY_LIBS) $(FRAMEWORKS) -lc++
 
 $(X86_STUB): src/stub_x86_64.c
 	@mkdir -p $(dir $@)
@@ -143,13 +145,27 @@ test:
 -include $(DEPS)
 
 .PHONY: dobby
+$(DOBBY_STAMP): dobby
+	@test -f "$@"
+
 dobby:
-	@echo "==> Building Dobby from source..."
-	@mkdir -p build
-	cd build && cmake ../vendor/dobby \
-		-DCMAKE_OSX_ARCHITECTURES=arm64 \
-		-DDOBBY_DEBUG=OFF \
-		-DDOBBY_GENERATE_SHARED=OFF \
-		-G "Unix Makefiles"
-	$(MAKE) -C build -j$(shell sysctl -n hw.ncpu)
-	@echo "==> Dobby rebuilt."
+	@if [ ! -d vendor/dobby/.git ]; then \
+		echo "==> Cloning Dobby..."; \
+		git clone https://github.com/jmpews/Dobby.git vendor/dobby; \
+	fi
+	@if [ "$$(git -C vendor/dobby rev-parse HEAD)" != "$(DOBBY_REV)" ]; then \
+		echo "==> Checking out pinned Dobby revision $(DOBBY_REV)..."; \
+		git -C vendor/dobby fetch --depth=1 origin $(DOBBY_REV); \
+		git -C vendor/dobby checkout --detach $(DOBBY_REV); \
+	fi
+	@if [ ! -f "$(DOBBY_DIR)/libdobby.a" ] || \
+	   [ "$$(cat "$(DOBBY_STAMP)" 2>/dev/null)" != "$(DOBBY_REV)" ]; then \
+		echo "==> Building Dobby from source..."; \
+		cmake -S vendor/dobby -B "$(DOBBY_DIR)" \
+			-DCMAKE_OSX_ARCHITECTURES=arm64 \
+			-DCMAKE_OSX_DEPLOYMENT_TARGET=$(MIN_VER) \
+			-DDOBBY_DEBUG=OFF \
+			-G "Unix Makefiles"; \
+		$(MAKE) -C "$(DOBBY_DIR)" -j$$(sysctl -n hw.ncpu); \
+		echo "$(DOBBY_REV)" > "$(DOBBY_STAMP)"; \
+	fi
