@@ -151,10 +151,6 @@ final class SettingsCard: NSView {
         applyCardSurfaceColors()
     }
 
-    @available(macOS 27, *)
-    override var cornerConfiguration: NSViewCornerConfiguration? {
-        .uniformCorners(radius: .containerConcentric(Metrics.cornerRadius))
-    }
 }
 
 @MainActor
