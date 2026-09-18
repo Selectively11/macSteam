@@ -2,6 +2,7 @@ import Foundation
 
 enum InstallationHealthState: String, Codable {
     case healthy = "Healthy"
+    case unknown = "Compatibility Unknown"
     case needsRepair = "Needs Repair"
     case unsupported = "Unsupported"
     case missing = "Missing"
@@ -96,15 +97,21 @@ enum HealthDiagnostics {
             return InstallationHealth(state: .missing, summary: "The managed component is not installed.", checks: checks)
         }
 
-        if let detected = environment.detectedBuild, detected != environment.supportedBuild {
-            checks.append(HealthCheck(name: "Steam build", status: .failure,
-                                      detail: "Detected \(detected); supported \(environment.supportedBuild)"))
-            return InstallationHealth(state: .unsupported, summary: "This Steam build is not supported.", checks: checks)
+        if let detected = environment.detectedBuild {
+            let matchesKnownBuild = detected == environment.supportedBuild
+            checks.append(HealthCheck(
+                name: "Steam build",
+                status: matchesKnownBuild ? .pass : .warning,
+                detail: matchesKnownBuild
+                    ? detected
+                    : "Detected \(detected); last verified \(environment.supportedBuild)"
+            ))
+        } else {
+            checks.append(HealthCheck(name: "Steam build", status: .warning,
+                                      detail: "Could not determine build"))
         }
-        checks.append(HealthCheck(name: "Steam build", status: environment.detectedBuild == nil ? .failure : .pass,
-                                  detail: environment.detectedBuild ?? "Could not determine build"))
 
-        if environment.detectedBuild == nil || environment.bundledVersion == nil || environment.installedVersion == nil {
+        if environment.bundledVersion == nil || environment.installedVersion == nil {
             checks.append(HealthCheck(name: "Component version", status: .failure,
                                       detail: "Installed or bundled version metadata is missing"))
             return InstallationHealth(state: .needsRepair, summary: "Installation metadata is incomplete.", checks: checks)
@@ -118,6 +125,13 @@ enum HealthDiagnostics {
         }
         if checks.contains(where: { $0.status == .failure }) {
             return InstallationHealth(state: .needsRepair, summary: "Steam needs repair before it can be managed safely.", checks: checks)
+        }
+        if checks.contains(where: { $0.status == .warning }) {
+            return InstallationHealth(
+                state: .unknown,
+                summary: "The installation looks usable, but this Steam build has not been verified.",
+                checks: checks
+            )
         }
         return InstallationHealth(state: .healthy, summary: "Steam is ready for management.", checks: checks)
     }

@@ -16,10 +16,13 @@ final class HealthDiagnosticsTests: XCTestCase {
         XCTAssertEqual(health.state, .missing)
     }
 
-    func testUnsupportedBuildWinsClassification() throws {
-        let env = environment(appExists: true, detected: "new", supported: "known")
+    func testUnverifiedBuildIsAWarningInsteadOfUnsupported() throws {
+        let env = environment(appExists: true, detected: "new", supported: "known",
+                              bundled: "1", installed: "1")
         try createRequiredFiles(env)
-        XCTAssertEqual(HealthDiagnostics.inspect(env).state, .unsupported)
+        let health = HealthDiagnostics.inspect(env)
+        XCTAssertEqual(health.state, .unknown)
+        XCTAssertEqual(health.checks.last?.status, .warning)
     }
 
     func testVersionMismatchNeedsRepair() throws {
@@ -43,10 +46,12 @@ final class HealthDiagnosticsTests: XCTestCase {
         XCTAssertEqual(HealthDiagnostics.inspect(env).state, .missing)
     }
 
-    func testUnknownBuildNeedsRepair() throws {
+    func testUnknownBuildDoesNotClaimRepairIsRequired() throws {
         let env = environment(appExists: true, detected: nil, supported: "known", bundled: "1", installed: "1")
         try createRequiredFiles(env)
-        XCTAssertEqual(HealthDiagnostics.inspect(env).state, .needsRepair)
+        let health = HealthDiagnostics.inspect(env)
+        XCTAssertEqual(health.state, .unknown)
+        XCTAssertEqual(health.checks.last?.status, .warning)
     }
 
     func testIntelIsUnsupported() throws {
