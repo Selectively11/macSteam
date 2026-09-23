@@ -4,6 +4,10 @@ options:
   deploymentTarget:
     macOS: "13.0"
   createIntermediateGroups: true
+packages:
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    from: "2.9.6"
 settings:
   base:
     SWIFT_VERSION: "6.0"
@@ -23,32 +27,67 @@ targets:
       - path: macsteam-app/Sources/MacsteamApp
     dependencies:
       - target: macsteam-dylib
+      - package: Sparkle
+    info:
+      path: macsteam-app/Info.plist
+      properties:
+        CFBundleName: macSteam Config
+        CFBundleDisplayName: macSteam Config
+        CFBundleIdentifier: com.macsteam.app
+        CFBundleExecutable: MacsteamApp
+        CFBundleIconFile: AppIcon
+        CFBundlePackageType: APPL
+        CFBundleShortVersionString: "0.7.1"
+        CFBundleVersion: "10"
+        LSMinimumSystemVersion: "13.0"
+        LSApplicationCategoryType: public.app-category.utilities
+        NSHumanReadableCopyright: "© 2026 Selectively11"
+        NSHighResolutionCapable: true
+        NSPrincipalClass: NSApplication
+        SUFeedURL: "https://raw.githubusercontent.com/Selectively11/macsteam/main/appcast.xml"
+        SUPublicEDKey: "rDOXzJ+vt12aWeu9hATgvz6q46MlRcgR4gbTfj5YuWQ="
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.macsteam.app
         PRODUCT_NAME: Macsteam
         PRODUCT_MODULE_NAME: MacsteamApp
         EXECUTABLE_NAME: MacsteamApp
-        INFOPLIST_KEY_NSPrincipalClass: NSApplication
-        INFOPLIST_KEY_LSMinimumSystemVersion: "13.0"
-        GENERATE_INFOPLIST_FILE: YES
-        MARKETING_VERSION: "0.2.0"
-        CURRENT_PROJECT_VERSION: "2"
+        GENERATE_INFOPLIST_FILE: NO
+        MARKETING_VERSION: "0.7.1"
+        CURRENT_PROJECT_VERSION: "10"
         ASSETCATALOG_COMPILER_APPICON_NAME: ""
     postCompileScripts:
-      - name: "Embed macsteam.dylib"
+      - name: "Embed payload, signatures, and icon"
         basedOnDependencyAnalysis: false
         script: |
           set -euo pipefail
           SRC="$SRCROOT/out/macsteam.dylib"
-          DEST_DIR="$BUILT_PRODUCTS_DIR/$CONTENTS_FOLDER_PATH/Resources"
+          RES_DIR="$BUILT_PRODUCTS_DIR/$CONTENTS_FOLDER_PATH/Resources"
           if [ ! -f "$SRC" ]; then
             echo "error: $SRC missing (macsteam-dylib target should have built it)" >&2
             exit 1
           fi
-          mkdir -p "$DEST_DIR"
-          cp "$SRC" "$DEST_DIR/macsteam.dylib"
-          echo "embedded $SRC -> $DEST_DIR/macsteam.dylib"
+          mkdir -p "$RES_DIR"
+          cp "$SRC" "$RES_DIR/macsteam.dylib"
+          echo "embedded $SRC -> $RES_DIR/macsteam.dylib"
+
+          MS_VERSION=$(sed -n 's/.*MACSTEAM_VERSION[[:space:]]*"\(.*\)".*/\1/p' "$SRCROOT/src/version.h")
+          printf '%s' "$MS_VERSION" > "$RES_DIR/macsteam.dylib.version"
+
+          SIG_SRC="$SRCROOT/signatures"
+          if [ -d "$SIG_SRC" ]; then
+            rm -rf "$RES_DIR/signatures"
+            cp -R "$SIG_SRC" "$RES_DIR/signatures"
+          else
+            echo "warning: $SIG_SRC missing -- hooks won't resolve without signatures" >&2
+          fi
+
+          ICON_SRC="$SRCROOT/macsteam-app/AppIcon.icns"
+          if [ -f "$ICON_SRC" ]; then
+            cp "$ICON_SRC" "$RES_DIR/AppIcon.icns"
+          else
+            echo "warning: $ICON_SRC missing -- run make_app.sh once to generate it" >&2
+          fi
 
   macsteam-dylib:
     type: ""

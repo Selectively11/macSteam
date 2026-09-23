@@ -5,6 +5,18 @@
     <description>Most recent changes for macSteam Config.</description>
     <language>en</language>
     <item>
+      <title>Version 0.8.0</title>
+      <pubDate>Wed, 23 Sep 2026 11:46:16 -0400</pubDate>
+      <sparkle:version>11</sparkle:version>
+      <sparkle:shortVersionString>0.8.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[Adds support for Steam Client 1788652215, switches manifest provider]]></description>
+      <enclosure url="https://github.com/Selectively11/macsteam/releases/download/v0.8.0/macSteam-Config-0.8.0.zip"
+                 type="application/octet-stream"
+                 sparkle:edSignature="38j1HYAeL7w5pxBcetpzFX5u77Ejm95S1aOirUPl2xBXme/2A9M4bPjzSKGhUc2pfUyR4g+Q/xb75m1z2zcgDg=="
+                 length="1509379" />
+    </item>
+    <item>
       <title>Version 0.7.1</title>
       <pubDate>Sat, 05 Sep 2026 00:15:45 -0400</pubDate>
       <sparkle:version>10</sparkle:version>
