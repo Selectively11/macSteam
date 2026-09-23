@@ -43,6 +43,8 @@ The config app:
 
 ```bash
 cd macsteam-app
+swift package resolve
+swift test
 bash make_app.sh
 ```
 
@@ -54,4 +56,6 @@ PRs are welcome. I could currently badly use a **real name** and an **icon**. I'
 
 ## License
 
-AGPLV2 with grifters being the reason why.
+macSteam is distributed under the GNU Affero General Public License version 3.
+See [LICENSE](LICENSE). Third-party attribution is recorded in
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
