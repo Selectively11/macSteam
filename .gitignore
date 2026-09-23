@@ -17,3 +17,4 @@ tests/
 xcuserdata/
 *.xcuserstate
 DerivedData/
+release/

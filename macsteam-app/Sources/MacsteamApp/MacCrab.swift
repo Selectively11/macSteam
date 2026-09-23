@@ -3,7 +3,7 @@ import Foundation
 
 enum MacCrab {
 
-    static let supportedVersion = "1788400362"
+    static let supportedVersion = "1788652215"
 
     static let localServerURL = "http://localhost:1666"
 
@@ -150,6 +150,7 @@ enum MacCrab {
 
     static func ensurePristineBundle(progress: (@Sendable (String) -> Void)? = nil) throws {
         if SteamBundleInstaller.isPristineValveBundle(Paths.steamApp) { return }
+        if SteamBundleInstaller.hasLoadableInjectedLibraries(Paths.steamApp) { return }
         if steamIsRunning() {
             progress?("Quitting Steam")
             killSteam()

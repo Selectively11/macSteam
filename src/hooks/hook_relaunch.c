@@ -48,6 +48,33 @@ static char *build_reinject_cmd(void) {
     return cmd;
 }
 
+static int target_keeps_insert(const char *path) {
+    if (!path)
+        return 1;
+    const char *base = strrchr(path, '/');
+    base = base ? base + 1 : path;
+    return strcmp(base, "steam_osx") == 0;
+}
+
+static char **strip_dyld_insert(char *const envp[]) {
+    if (!envp) return NULL;
+
+    int count = 0;
+    for (int i = 0; envp[i]; i++)
+        count++;
+
+    char **clean = malloc(sizeof(char *) * (count + 1));
+    if (!clean) return NULL;
+
+    int j = 0;
+    for (int i = 0; envp[i]; i++) {
+        if (strncmp(envp[i], "DYLD_INSERT_LIBRARIES=", 22) != 0)
+            clean[j++] = envp[i];
+    }
+    clean[j] = NULL;
+    return clean;
+}
+
 static char **maybe_rewrite(char *const argv[]) {
     if (!is_open_restart(argv))
         return NULL;
@@ -120,7 +147,11 @@ static int hook_execve(const char *path, char *const argv[], char *const envp[])
         free_rewrite(nv);
         return rc;
     }
-    return orig_execve(path, argv, envp);
+    char **clean_env = target_keeps_insert(path) ? NULL : strip_dyld_insert(envp);
+    int rc = orig_execve(path, argv,
+                         clean_env ? (char *const *)clean_env : envp);
+    free(clean_env);
+    return rc;
 }
 
 static int hook_posix_spawn(pid_t *pid, const char *path,
@@ -134,7 +165,11 @@ static int hook_posix_spawn(pid_t *pid, const char *path,
         free_rewrite(nv);
         return rc;
     }
-    return orig_posix_spawn(pid, path, fa, attr, argv, envp);
+    char **clean_env = target_keeps_insert(path) ? NULL : strip_dyld_insert(envp);
+    int rc = orig_posix_spawn(pid, path, fa, attr, argv,
+                              clean_env ? (char *const *)clean_env : envp);
+    free(clean_env);
+    return rc;
 }
 
 static void hook_one(const char *sym, void *repl, void **orig) {
