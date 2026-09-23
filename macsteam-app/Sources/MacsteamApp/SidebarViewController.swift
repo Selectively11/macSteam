@@ -20,6 +20,8 @@ final class SidebarViewController: NSViewController {
 
     private let rows: [Row] = [
         .group("Library"),
+        .leaf(title: "Installed Games", symbol: "externaldrive",
+              item: .library),
         .leaf(title: "Import Apps", symbol: "square.and.arrow.down",
               item: .importZip),
         .leaf(title: "Apps", symbol: ConfigViewController.Section.apps.symbol,
