@@ -6,7 +6,7 @@
 #include <CoreFoundation/CoreFoundation.h>
 #include <CFNetwork/CFNetwork.h>
 
-#define MANIFEST_API_FMT "https://manifest.opensteamtool.com/%llu"
+#define MANIFEST_API_FMT "http://gmrc.wudrm.com/manifest/%llu"
 #define MANIFEST_UA      "OpenSteamTool/1.0"
 
 static void *orig_GetManifestRequestCode = NULL;

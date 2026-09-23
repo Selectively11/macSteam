@@ -38,10 +38,6 @@ extern char **environ;
 #define SX_STUB_BUNDLE "/Applications/Steam.app"
 #endif
 
-// Clean wrapper bundle we spawn through so the Dock tile realizes against an
-// override-free bundle (glass icon) instead of the inner AppBundle (legacy
-// custom-icon override). Named Steam.app so the Dock label reads "Steam" (the
-// label comes from the .app filename, not CFBundleName). See build_glass_wrapper.
 #ifndef SX_WRAPPER_SUFFIX
 #define SX_WRAPPER_SUFFIX SX_STATE_SUFFIX "/Steam.app"
 #endif

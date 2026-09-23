@@ -80,6 +80,14 @@ enum SteamBundleInstaller {
         return info.stderr.contains("TeamIdentifier=\(valveTeamID)")
     }
 
+    static func hasLoadableInjectedLibraries(_ app: URL) -> Bool {
+        let fm = FileManager.default
+        guard fm.fileExists(atPath: app.path) else { return false }
+        guard let insert = SteamInstaller.lsEnvironmentInsert() else { return false }
+        let paths = insert.split(separator: ":").map(String.init)
+        return !paths.isEmpty && paths.allSatisfy(fm.fileExists(atPath:))
+    }
+
     private static func verifyValveSigned(_ app: URL) throws {
         let strict = Subprocess.run("/usr/bin/codesign",
                                     ["--verify", "--strict", "--verbose=2", app.path])

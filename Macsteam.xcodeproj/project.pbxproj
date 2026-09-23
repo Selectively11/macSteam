@@ -14,6 +14,7 @@
 		0DF2544A2A562E04F001C975 /* PackageServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF10CE7907305E518E936622 /* PackageServer.swift */; };
 		11F50264AF1768A2596E5D58 /* GameReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFF5425A91A8227C1E5C649 /* GameReviewCell.swift */; };
 		1594B0225BA15CD36DD86019 /* ZipImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662D8C8E389091E1FEBC0285 /* ZipImporter.swift */; };
+		16D29F8D4E92296162760498 /* UpdaterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35049B5E0AC70E90976A8E /* UpdaterManager.swift */; };
 		1ED97326E624D8DF11E97EA8 /* SteamBundleInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC29ED53A77D88C3772FE750 /* SteamBundleInstaller.swift */; };
 		278FDA572C9F5AAC5B46DB17 /* AppCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189DFCF8994448D9223DF875 /* AppCardListView.swift */; };
 		39477E154A03C89EF9EA5042 /* Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69E282893128DA01594B4FF /* Paths.swift */; };
@@ -27,6 +28,7 @@
 		B4DD3956CFABEFD36653E4B4 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB775E8332709FBB761A68AB /* ConfigViewController.swift */; };
 		BAB300C772084F35C44A0525 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1035A226D59181C9B97FB634 /* ImportViewController.swift */; };
 		BEC5A3D01AC72E63330D7BA4 /* ImportDropViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8858DD3858C37AD23F2A9 /* ImportDropViews.swift */; };
+		C6A06F1BBC9BE4EAF106ECB3 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 41172064FBD70D28840A9DE0 /* Sparkle */; };
 		C6C8555768D5266BC25C3C6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF53423D1C5852034F7E2BD /* AppDelegate.swift */; };
 		CB9548875259704AEBC19330 /* InstallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA329D034FBD1F6A47EF2FB0 /* InstallViewController.swift */; };
 		D3ACBC8F91B77713DFE52F88 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752BE70E2EB8396C53E8B095 /* SidebarViewController.swift */; };
@@ -48,15 +50,19 @@
 /* Begin PBXFileReference section */
 		02BA9FF4940B7DBD215F9019 /* file.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = file.h; sourceTree = "<group>"; };
 		03DBFA78B30C32CEED2B9425 /* steam_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = steam_types.h; sourceTree = "<group>"; };
+		0775B2763552EDCF91EA2E8B /* ticket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ticket.h; sourceTree = "<group>"; };
 		0AF53423D1C5852034F7E2BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0B35049B5E0AC70E90976A8E /* UpdaterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterManager.swift; sourceTree = "<group>"; };
 		0EFE126F003AF49D8F282503 /* stats_cache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stats_cache.h; sourceTree = "<group>"; };
 		1035A226D59181C9B97FB634 /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
 		10FC707F93D1015261FAECA4 /* stats_resolve_probe.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stats_resolve_probe.c; sourceTree = "<group>"; };
 		17110BF276D8FFBDC908BC32 /* Subprocess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subprocess.swift; sourceTree = "<group>"; };
 		189DFCF8994448D9223DF875 /* AppCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCardListView.swift; sourceTree = "<group>"; };
+		1D804E349E9128911B8DCECD /* anchor_probe.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = anchor_probe.c; sourceTree = "<group>"; };
 		2487A27F2C4BDD0139EDDFBD /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		2788DAF13536E636F2944149 /* sigdb.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sigdb.c; sourceTree = "<group>"; };
 		278D608A4C94651FCD5CC9D3 /* MacCrab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacCrab.swift; sourceTree = "<group>"; };
+		2B336303B6593BA24509A30F /* webpatch_probe.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = webpatch_probe.c; sourceTree = "<group>"; };
 		2CD26FB6DE970B37485791AE /* dlc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dlc.h; sourceTree = "<group>"; };
 		2D7C6B2A0D65DD618507FCE7 /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		2D7F06564A6033FF0E165D7E /* stats_cache.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stats_cache.c; sourceTree = "<group>"; };
@@ -70,13 +76,14 @@
 		3F7BBB1D5855E17D377848DB /* package.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = package.h; sourceTree = "<group>"; };
 		40E7147BBCD4C025DFC6E388 /* aob.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = aob.c; sourceTree = "<group>"; };
 		410992EEE19CD5F8217DC79C /* session.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = session.h; sourceTree = "<group>"; };
+		42032FC37947D4B92DC12DE3 /* anchor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = anchor.h; sourceTree = "<group>"; };
 		444544E27FB73F0EC92152D6 /* license.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = license.h; sourceTree = "<group>"; };
-		468360145321CB7FAFC6396F /* stats.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stats.h; sourceTree = "<group>"; };
-		4C393E17C5385B5C15E51BCB /* hook_stats_resp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hook_stats_resp.c; sourceTree = "<group>"; };
 		4C3B1CF8DCCC7E041C9A699D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		51154C606410C8B19556C18D /* PackageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageFetcher.swift; sourceTree = "<group>"; };
+		5C9E3BC3BDCAEA4BAEF59196 /* ticket.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ticket.c; sourceTree = "<group>"; };
 		61BD281B836872479CC6B551 /* resolver.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = resolver.c; sourceTree = "<group>"; };
 		662D8C8E389091E1FEBC0285 /* ZipImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipImporter.swift; sourceTree = "<group>"; };
+		6B16D30717088C3E7124605C /* schema_owners.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = schema_owners.h; sourceTree = "<group>"; };
 		6D7294804272AFFDEF86E5EF /* SteamInstaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamInstaller.swift; sourceTree = "<group>"; };
 		6EC79EE1F594D370DF523B99 /* Macsteam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Macsteam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		716AF125EC92645AB01189FE /* reconcile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = reconcile.h; sourceTree = "<group>"; };
@@ -88,17 +95,21 @@
 		876F1575738BDC963F4B010F /* hook_depot.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hook_depot.c; sourceTree = "<group>"; };
 		89381332819B970C11716E37 /* sigdb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sigdb.h; sourceTree = "<group>"; };
 		8A21ECA29419772E6B0DDF0E /* hook_manifest.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hook_manifest.c; sourceTree = "<group>"; };
+		8A975B6C9BEF693C9C640834 /* stub_x86_64.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stub_x86_64.c; sourceTree = "<group>"; };
 		8B6116EC3DB0E96BFD97E71E /* log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
 		8BFA2256C5E0B1D0BACD2DE3 /* Makefile */ = {isa = PBXFileReference; path = Makefile; sourceTree = "<group>"; };
-		8E605AC004847319A0B30F7A /* stats.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stats.c; sourceTree = "<group>"; };
+		8E389131FAD1735A7D44C1AA /* hook_ticket.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hook_ticket.c; sourceTree = "<group>"; };
 		903CE5FAC2DFF34ABE9C992A /* ConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigStore.swift; sourceTree = "<group>"; };
+		9200F821833408FF5F7C5915 /* ctx.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ctx.c; sourceTree = "<group>"; };
 		939AB583D5B425122E45C544 /* aob_probe.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = aob_probe.c; sourceTree = "<group>"; };
 		93DE17924F218DA47B8F2AD2 /* macSteam.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = macSteam.app; sourceTree = "<group>"; };
 		94CAD8EC207DD6E316BC7317 /* depot.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = depot.c; sourceTree = "<group>"; };
+		96C35A928329C7496C0F8712 /* anchor.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = anchor.c; sourceTree = "<group>"; };
 		9ADFBAEE4BF0B1B244DF7CBE /* macSteam */ = {isa = PBXFileReference; path = macSteam; sourceTree = "<group>"; };
 		9CB1C6C4E7B1968453AF4E04 /* hook_dlc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hook_dlc.c; sourceTree = "<group>"; };
 		9CD6F01B3FC167D2E4913CBA /* StepFailure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepFailure.swift; sourceTree = "<group>"; };
 		A0B8F422D587B1FD6C261D53 /* apps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = apps.h; sourceTree = "<group>"; };
+		A1080EBDD59AAACA5C0A567E /* schema_owners.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = schema_owners.c; sourceTree = "<group>"; };
 		A2D04BC391E61B91B06B5559 /* hooks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hooks.h; sourceTree = "<group>"; };
 		A4C41DF1AD1F641B9C00E549 /* aob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aob.h; sourceTree = "<group>"; };
 		AAE1489CD1A66BA0F384DCA4 /* macho.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macho.h; sourceTree = "<group>"; };
@@ -127,6 +138,7 @@
 		ED9C4BCECFB3EEEE8981243C /* RepairViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairViewController.swift; sourceTree = "<group>"; };
 		F279B8792535DE812DA27E7A /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		F2CA924DCA32509E3A64D778 /* apps.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = apps.c; sourceTree = "<group>"; };
+		F5384176F2D8EFBB6C1ABAFC /* ctx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ctx.h; sourceTree = "<group>"; };
 		F69E282893128DA01594B4FF /* Paths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paths.swift; sourceTree = "<group>"; };
 		F6E121533D3A1244B6A929A8 /* reconcile.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = reconcile.c; sourceTree = "<group>"; };
 		F725E77B4613A570D32F59FF /* MacsteamConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacsteamConfig.swift; sourceTree = "<group>"; };
@@ -134,6 +146,17 @@
 		FB775E8332709FBB761A68AB /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		FD2A14FC07A01E3E8371C2AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		54C2B4D050DCC21BE9A6A01B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6A06F1BBC9BE4EAF106ECB3 /* Sparkle in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		2394A98E4A6E48BDDE40E463 /* feats */ = {
@@ -149,8 +172,10 @@
 				444544E27FB73F0EC92152D6 /* license.h */,
 				3C4717BFBFF48D52335E4BD1 /* package.c */,
 				3F7BBB1D5855E17D377848DB /* package.h */,
-				8E605AC004847319A0B30F7A /* stats.c */,
-				468360145321CB7FAFC6396F /* stats.h */,
+				A1080EBDD59AAACA5C0A567E /* schema_owners.c */,
+				6B16D30717088C3E7124605C /* schema_owners.h */,
+				5C9E3BC3BDCAEA4BAEF59196 /* ticket.c */,
+				0775B2763552EDCF91EA2E8B /* ticket.h */,
 			);
 			path = feats;
 			sourceTree = "<group>";
@@ -166,9 +191,11 @@
 		4BA6FD345B8A1344B422D880 /* tests */ = {
 			isa = PBXGroup;
 			children = (
+				1D804E349E9128911B8DCECD /* anchor_probe.c */,
 				939AB583D5B425122E45C544 /* aob_probe.c */,
 				7D14C720EFDA44E4E3972527 /* config_probe.c */,
 				10FC707F93D1015261FAECA4 /* stats_resolve_probe.c */,
+				2B336303B6593BA24509A30F /* webpatch_probe.c */,
 			);
 			path = tests;
 			sourceTree = "<group>";
@@ -184,6 +211,8 @@
 		73442B82893D21F2D927F7EB /* resolver */ = {
 			isa = PBXGroup;
 			children = (
+				96C35A928329C7496C0F8712 /* anchor.c */,
+				42032FC37947D4B92DC12DE3 /* anchor.h */,
 				40E7147BBCD4C025DFC6E388 /* aob.c */,
 				A4C41DF1AD1F641B9C00E549 /* aob.h */,
 				61BD281B836872479CC6B551 /* resolver.c */,
@@ -208,6 +237,7 @@
 			children = (
 				2D7C6B2A0D65DD618507FCE7 /* constants.h */,
 				03DBFA78B30C32CEED2B9425 /* steam_types.h */,
+				8A975B6C9BEF693C9C640834 /* stub_x86_64.c */,
 				F279B8792535DE812DA27E7A /* version.h */,
 				AA08CC612833F125660F0D2A /* config */,
 				F2E654DA4BC69EC27460187A /* core */,
@@ -292,8 +322,8 @@
 				8A21ECA29419772E6B0DDF0E /* hook_manifest.c */,
 				E2F527C859C2B5BCB42EDD0C /* hook_package.c */,
 				30EE0F4DB320C0B76472FD41 /* hook_relaunch.c */,
-				4C393E17C5385B5C15E51BCB /* hook_stats_resp.c */,
 				D95B81BBDE522D1F417F3599 /* hook_stats.c */,
+				8E389131FAD1735A7D44C1AA /* hook_ticket.c */,
 				86592EA528C00BD6EBE651D3 /* hook_whatsnew.c */,
 				B9610C69612C8884479522AA /* hooks.c */,
 				A2D04BC391E61B91B06B5559 /* hooks.h */,
@@ -328,6 +358,7 @@
 				B22A1DE83F5FBF0A4004D88D /* SteamStoreClient.swift */,
 				9CD6F01B3FC167D2E4913CBA /* StepFailure.swift */,
 				17110BF276D8FFBDC908BC32 /* Subprocess.swift */,
+				0B35049B5E0AC70E90976A8E /* UpdaterManager.swift */,
 				662D8C8E389091E1FEBC0285 /* ZipImporter.swift */,
 			);
 			path = MacsteamApp;
@@ -336,6 +367,8 @@
 		F2E654DA4BC69EC27460187A /* core */ = {
 			isa = PBXGroup;
 			children = (
+				9200F821833408FF5F7C5915 /* ctx.c */,
+				F5384176F2D8EFBB6C1ABAFC /* ctx.h */,
 				DB16123FC5500F4323CB5F70 /* loader.c */,
 				B32DB06826EE4645EF442E0F /* macho.c */,
 				AAE1489CD1A66BA0F384DCA4 /* macho.h */,
@@ -394,8 +427,9 @@
 			buildConfigurationList = 3EA005ECDF455DCF90CA1C53 /* Build configuration list for PBXNativeTarget "MacsteamApp" */;
 			buildPhases = (
 				AE78DC61EBE204677CBD01EF /* Sources */,
-				68CC13159137EEF4E32AC9AF /* Embed macsteam.dylib */,
+				D8653040DE87F8BF7B08662D /* Embed payload, signatures, and icon */,
 				2D02E89B7E7748280FE386D2 /* Resources */,
+				54C2B4D050DCC21BE9A6A01B /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -404,6 +438,7 @@
 			);
 			name = MacsteamApp;
 			packageProductDependencies = (
+				41172064FBD70D28840A9DE0 /* Sparkle */,
 			);
 			productName = MacsteamApp;
 			productReference = 6EC79EE1F594D370DF523B99 /* Macsteam.app */;
@@ -441,6 +476,9 @@
 			);
 			mainGroup = A02EEB65A5B5E119FB83B079;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0F2C68D1CDE57D015E7C7083 /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5383426282C181A072012115 /* Products */;
 			projectDirPath = "";
@@ -465,7 +503,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		68CC13159137EEF4E32AC9AF /* Embed macsteam.dylib */ = {
+		D8653040DE87F8BF7B08662D /* Embed payload, signatures, and icon */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -475,14 +513,14 @@
 			);
 			inputPaths = (
 			);
-			name = "Embed macsteam.dylib";
+			name = "Embed payload, signatures, and icon";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\nSRC=\"$SRCROOT/out/macsteam.dylib\"\nDEST_DIR=\"$BUILT_PRODUCTS_DIR/$CONTENTS_FOLDER_PATH/Resources\"\nif [ ! -f \"$SRC\" ]; then\n  echo \"error: $SRC missing (macsteam-dylib target should have built it)\" >&2\n  exit 1\nfi\nmkdir -p \"$DEST_DIR\"\ncp \"$SRC\" \"$DEST_DIR/macsteam.dylib\"\necho \"embedded $SRC -> $DEST_DIR/macsteam.dylib\"\n";
+			shellScript = "set -euo pipefail\nSRC=\"$SRCROOT/out/macsteam.dylib\"\nRES_DIR=\"$BUILT_PRODUCTS_DIR/$CONTENTS_FOLDER_PATH/Resources\"\nif [ ! -f \"$SRC\" ]; then\n  echo \"error: $SRC missing (macsteam-dylib target should have built it)\" >&2\n  exit 1\nfi\nmkdir -p \"$RES_DIR\"\ncp \"$SRC\" \"$RES_DIR/macsteam.dylib\"\necho \"embedded $SRC -> $RES_DIR/macsteam.dylib\"\n\nMS_VERSION=$(sed -n 's/.*MACSTEAM_VERSION[[:space:]]*\"\\(.*\\)\".*/\\1/p' \"$SRCROOT/src/version.h\")\nprintf '%s' \"$MS_VERSION\" > \"$RES_DIR/macsteam.dylib.version\"\n\nSIG_SRC=\"$SRCROOT/signatures\"\nif [ -d \"$SIG_SRC\" ]; then\n  rm -rf \"$RES_DIR/signatures\"\n  cp -R \"$SIG_SRC\" \"$RES_DIR/signatures\"\nelse\n  echo \"warning: $SIG_SRC missing -- hooks won't resolve without signatures\" >&2\nfi\n\nICON_SRC=\"$SRCROOT/macsteam-app/AppIcon.icns\"\nif [ -f \"$ICON_SRC\" ]; then\n  cp \"$ICON_SRC\" \"$RES_DIR/AppIcon.icns\"\nelse\n  echo \"warning: $ICON_SRC missing -- run make_app.sh once to generate it\" >&2\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -521,6 +559,7 @@
 				071881A12021FB821F1BC8C4 /* SteamStoreClient.swift in Sources */,
 				0B2BC150C8706A443968C56D /* StepFailure.swift in Sources */,
 				5DC5B2939C7FB74A8655B606 /* Subprocess.swift in Sources */,
+				16D29F8D4E92296162760498 /* UpdaterManager.swift in Sources */,
 				1594B0225BA15CD36DD86019 /* ZipImporter.swift in Sources */,
 				E72923A58804C575A1EE3A08 /* main.swift in Sources */,
 			);
@@ -621,16 +660,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 10;
 				EXECUTABLE_NAME = MacsteamApp;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_LSMinimumSystemVersion = 13.0;
-				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "macsteam-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.macsteam.app;
 				PRODUCT_MODULE_NAME = MacsteamApp;
 				PRODUCT_NAME = Macsteam;
@@ -722,16 +760,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 10;
 				EXECUTABLE_NAME = MacsteamApp;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_LSMinimumSystemVersion = 13.0;
-				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "macsteam-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.macsteam.app;
 				PRODUCT_MODULE_NAME = MacsteamApp;
 				PRODUCT_NAME = Macsteam;
@@ -807,6 +844,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0F2C68D1CDE57D015E7C7083 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		41172064FBD70D28840A9DE0 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0F2C68D1CDE57D015E7C7083 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8640518DAE0F0C3C3891B708 /* Project object */;
 }
