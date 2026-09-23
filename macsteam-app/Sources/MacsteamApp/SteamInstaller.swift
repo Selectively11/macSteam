@@ -20,7 +20,7 @@ enum SteamInstaller {
         guard fm.fileExists(atPath: Paths.steamApp.path) else { return .steamMissing }
 
         let dylibPresent = fm.fileExists(atPath: Paths.steamAppInjectedDylib.path)
-        let insertsUs = lsEnvironmentInsert() == Paths.steamAppInjectedDylib.path
+        let insertsUs = insertedLibraries().contains(Paths.steamAppInjectedDylib.path)
 
         if dylibPresent && insertsUs {
             let bundled = bundledDylibVersion()
@@ -84,7 +84,7 @@ enum SteamInstaller {
 
         try deploySignatures()
 
-        try plistSet(":LSEnvironment:DYLD_INSERT_LIBRARIES", Paths.steamAppInjectedDylib.path)
+        try plistSet(":LSEnvironment:DYLD_INSERT_LIBRARIES", mergedInsertList())
 
         // Sign inner-to-outer so each seal covers the one below.
         try adhocSign(Paths.steamAppInjectedDylib)
@@ -131,6 +131,18 @@ enum SteamInstaller {
         guard out.code == 0 else { return nil }
         let v = out.stdout.trimmingCharacters(in: .whitespacesAndNewlines)
         return v.isEmpty ? nil : v
+    }
+
+    private static func insertedLibraries() -> [String] {
+        lsEnvironmentInsert()?.split(separator: ":").map(String.init) ?? []
+    }
+
+    private static func mergedInsertList() -> String {
+        let ours = Paths.steamAppInjectedDylib.path
+        let existing = insertedLibraries().filter {
+            $0 != ours && FileManager.default.fileExists(atPath: $0)
+        }
+        return ([ours] + existing).joined(separator: ":")
     }
 
     // MARK: - Shell primitives
