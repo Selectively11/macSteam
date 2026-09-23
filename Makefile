@@ -128,19 +128,28 @@ $(ANCHOR_PROBE_BIN): $(ANCHOR_PROBE_SRC) src/resolver/anchor.c src/core/macho.c 
 	@echo "==> Built probe: $@"
 
 test:
-	@if [ ! -d macsteam-app/Tests ]; then echo "==> No local tests, skipping."; exit 0; fi; \
-	 $(MAKE) $(PROBE_BIN) $(STATS_PROBE_BIN) $(AOB_PROBE_BIN) $(ANCHOR_PROBE_BIN); \
-	 echo "==> Running C stats-resolver probe..."; \
-	 $(STATS_PROBE_BIN); \
-	 echo "==> Running C aob-scanner probe..."; \
-	 $(AOB_PROBE_BIN); \
-	 echo "==> Running C anchor-resolver probe..."; \
-	 MACSTEAM_SCRATCH="$(OUT_DIR)/tests" $(ANCHOR_PROBE_BIN); \
-	 echo "==> Running macsteam-app tests..."; \
-	 cd macsteam-app && \
-	   MACSTEAM_PROBE="$(CURDIR)/$(PROBE_BIN)" \
-	   MACSTEAM_CFG="$(HOME)/Library/Application Support/macsteam/config.yaml" \
-	   swift test
+	@set -e; \
+	 if [ -f "$(PROBE_SRC)" ] && [ -f "$(STATS_PROBE_SRC)" ] && \
+	    [ -f "$(AOB_PROBE_SRC)" ] && [ -f "$(ANCHOR_PROBE_SRC)" ]; then \
+	   $(MAKE) $(PROBE_BIN) $(STATS_PROBE_BIN) $(AOB_PROBE_BIN) $(ANCHOR_PROBE_BIN); \
+	   echo "==> Running C stats-resolver probe..."; \
+	   $(STATS_PROBE_BIN); \
+	   echo "==> Running C aob-scanner probe..."; \
+	   $(AOB_PROBE_BIN); \
+	   echo "==> Running C anchor-resolver probe..."; \
+	   MACSTEAM_SCRATCH="$(OUT_DIR)/tests" $(ANCHOR_PROBE_BIN); \
+	 else \
+	   echo "==> C probe sources are absent; skipping C probes."; \
+	 fi; \
+	 if [ -d macsteam-app/Tests ]; then \
+	   echo "==> Running macsteam-app tests..."; \
+	   cd macsteam-app && \
+	     MACSTEAM_PROBE="$(CURDIR)/$(PROBE_BIN)" \
+	     MACSTEAM_CFG="$(HOME)/Library/Application Support/macsteam/config.yaml" \
+	     swift test; \
+	 else \
+	   echo "==> Swift test sources are absent; skipping Swift tests."; \
+	 fi
 
 -include $(DEPS)
 
